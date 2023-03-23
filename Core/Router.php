@@ -42,11 +42,10 @@ class Router
     public function route($uri, $method) {
         foreach ($this->routes as $route){
             if($route['uri'] === $uri && $route['method'] === strtoupper($method)){
-                require BASE_PATH . $route['controller'];
-            } else {
-                $this->abort();
+                return require BASE_PATH . $route['controller'];
             }
         }
+        $this->abort();
     }
 
     protected function abort($code = 404)
